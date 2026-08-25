@@ -1,0 +1,15 @@
+version: "3.5"
+services:
+  mregd:
+    build: .
+    image: mregd:latest
+    restart: always
+    ports:
+      - "6490:6490"
+    environment:
+      - MREGD_XRRP_LOGIN=registrar
+      - MREGD_XRRP_PASSWORD=password
+      - MREGD_XRRP_HOST=xrrp-ote.rrpproxy.net
+      - MREGD_XRRP_PORT=2001
+      - MREGD_SOCKET_USERNAME=user
+      - MREGD_SOCKET_PASSWORD=pass
