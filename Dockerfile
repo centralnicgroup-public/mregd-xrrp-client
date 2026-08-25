@@ -3,6 +3,7 @@ FROM debian:${RELEASE}
 ARG MREGD_GROUP=mregd
 ARG MREGD_USER=mregd
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+		adduser \
 		perl \
 		libio-socket-ssl-perl \
 		libnet-server-perl \
@@ -14,6 +15,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	&& mkdir /opt/mregd
 COPY mregd.pl /opt/mregd/
 COPY mregd.conf /opt/mregd/mregd.conf
-RUN echo "port        6490|tcp" >> /opt/mregd/mregd.conf
+RUN echo "port        0.0.0.0:6490|tcp" >> /opt/mregd/mregd.conf
 EXPOSE 6490/tcp
 CMD ["/opt/mregd/mregd.pl", "foreground"]
